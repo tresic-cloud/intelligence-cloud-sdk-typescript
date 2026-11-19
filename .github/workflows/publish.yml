@@ -30,4 +30,9 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
+      # Trusted publishing (OIDC) is used once the npm package has a trusted publisher.
+      # For the very first publish only, an NPM_TOKEN environment secret (a short-lived granular
+      # token) is used instead; delete the secret right after 0.1.0 is out.
       - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
