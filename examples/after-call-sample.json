@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "type": "end_of_call_summary",
+  "is_test": true,
+  "location_id": "11111111-2222-4333-8444-555555555555",
+  "timestamp": "2026-11-02T16:46:12Z",
+  "call": {
+    "id": "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee",
+    "call_type": "inbound",
+    "duration_seconds": 184,
+    "call_date": "2026-11-02",
+    "caller_name": "Jordan Example",
+    "caller_number": "5555550142",
+    "callee_name": "Riverbend Service Desk",
+    "callee_number": "2001",
+    "platform": "netsapiens"
+  },
+  "summary": {
+    "text": "The caller asked to move a service appointment to Thursday morning. The agent confirmed the new time and sent a reminder.",
+    "sentiment": "positive"
+  },
+  "location": {
+    "id": "11111111-2222-4333-8444-555555555555",
+    "company_id": "66666666-7777-4888-8999-aaaaaaaaaaaa",
+    "connector_id": "bbbbbbbb-cccc-4ddd-8eee-ffffffffffff"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "name": "@intelligence-cloud/sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the Intelligence Cloud partner API: customer lifecycle and conversation intelligence.",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://docs.intelligence.cloud",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tresic-cloud/intelligence-cloud-sdk-typescript.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run tests/unit",
+    "test:live": "IC_LIVE=1 vitest run tests/live",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.43",
+    "openapi-typescript": "7.9.1",
+    "tsup": "8.5.1",
+    "typescript": "5.9.3",
+    "vitest": "4.1.12",
+    "yaml": "2.8.4"
+  },
+  "overrides": {
+    "esbuild": "0.28.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
