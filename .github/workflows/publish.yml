@@ -20,8 +20,8 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
-      # Trusted publishing (OIDC) needs npm 11.5.1 or later; Node 22 ships npm 10.
-      - run: npm install -g npm@11
+      # Staged publishing (npm stage publish) needs npm 12; Node 22 ships npm 10.
+      - run: npm install -g npm@12
       - name: Check the tag matches the package version
         run: |
           v=$(node -p "require('./package.json').version")
@@ -30,9 +30,11 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
-      # Trusted publishing (OIDC) is used once the npm package has a trusted publisher.
-      # For the very first publish only, an NPM_TOKEN environment secret (a short-lived granular
-      # token) is used instead; delete the secret right after 0.1.0 is out.
-      - run: npm publish --provenance --access public
+      # The release is STAGED, not published: a maintainer approves it on npmjs.com (or with
+      # `npm stage approve <stage-id>`) with 2FA, and only then does it go public.
+      # Auth: trusted publishing (OIDC) once the package has a trusted publisher allowed to stage;
+      # for the very first version only, the short-lived NPM_TOKEN environment secret. Delete
+      # the secret right after 0.1.0 is approved.
+      - run: npm stage publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
